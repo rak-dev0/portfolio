@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Layne Fester - Computer Science student at UW-Milwaukee exploring AI and Cybersecurity." />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Make footer stick to bottom */
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      background: #f5fbff;
+      color: #0f172a;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Header / Nav */
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+	  transition: transform 0.25s ease-out;
+    }
+
+    .site-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 16px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: #475569;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-link:hover {
+      color: #1e3a8a;
+    }
+
+    .nav-link.active {
+      color: #1e3a8a;
+      border-bottom-color: #3b82f6;
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 24px 16px 32px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      margin-top: 40px;
+    }
+
+    /* Hero styles */
+    .hero-container {
+      background: #f5fbff;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    }
+    
+    .hero-content {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .hero-text {
+      padding-right: 20px;
+    }
+    
+    .hero-text h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin: 0 0 12px 0;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 18px;
+      color: #3b82f6;
+      margin: 0 0 20px 0;
+      font-weight: 500;
+    }
+    
+    .hero-subtitle .dot {
+      color: #94a3b8;
+      margin: 0 8px;
+    }
+    
+    .hero-description {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.7;
+      margin: 0 0 32px 0;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .btn {
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: #1e40af;
+      border: 2px solid #3b82f6;
+    }
+    
+    .btn-secondary:hover {
+      background: #eff6ff;
+      transform: translateY(-2px);
+    }
+    
+    .hero-image {
+      position: relative;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .hero-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e40af;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      
+      .hero-text {
+        padding-right: 0;
+      }
+      
+      .hero-text h1 {
+        font-size: 36px;
+      }
+      
+      .hero-buttons {
+        justify-content: center;
+      }
+      
+      .hero-badge {
+        position: static;
+        display: inline-block;
+        margin-top: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-title">Portfolio</div>
+    <nav class="site-nav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="resume.html" class="nav-link">Resume</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Layne Fester</h1>
+          <p class="hero-subtitle">
+            Student <span class="dot">●</span> Computer Science at UW-Milwaukee
+          </p>
+          <p class="hero-description">
+            Exploring the world of AI &amp; Cybersecurity with the goal of making technology safer and more reliable for everyone.
+          </p>
+          <div class="hero-buttons">
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <img src="https://i.imgur.com/CFOfcA2.jpeg" alt="Layne Fester">
+          <div class="hero-badge">🎓 Class of 2029</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    © 2025 Layne Fester
+  </footer>
+</body>
+</html>

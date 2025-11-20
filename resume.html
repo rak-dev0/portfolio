@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Resume of Layne Fester, Computer Science student at UW-Milwaukee." />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Sticky footer layout */
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Header / Nav */
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .site-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 16px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: #475569;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-link:hover {
+      color: #1e3a8a;
+    }
+
+    .nav-link.active {
+      color: #1e3a8a;
+      border-bottom-color: #3b82f6;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 24px 16px 32px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      margin-top: 40px;
+    }
+
+    /* Resume styles */
+    .resume-container {
+      max-width: 850px;
+      margin: 32px auto;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI',Tahoma,Verdana,sans-serif;
+      color:#333;
+    }
+    .header {
+      background:linear-gradient(135deg,#1e3a8a,#3b82f6);
+      color:white;
+      padding:32px 40px 24px 40px;
+    }
+    .header h1 {
+      font-size:32px;
+      font-weight:600;
+      margin-bottom:6px;
+    }
+    .header .tagline {
+      font-size:14px;
+      line-height:1.6;
+      opacity:.98;
+      max-width:700px;
+      color:#e0f7ff;
+    }
+    .content {
+      padding:32px 40px;
+    }
+    .section {
+      margin-bottom:26px;
+    }
+    .section-title {
+      color:#1e40af;
+      font-size:18px;
+      font-weight:600;
+      margin-bottom:10px;
+      border-bottom:2px solid #3b82f6;
+      text-transform:uppercase;
+    }
+    .item-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:10px;
+    }
+    .item-title {
+      font-weight:600;
+      color:#1e40af;
+      font-size:15px;
+    }
+    .item-subtitle {
+      color:#666;
+      font-size:13px;
+      font-style:italic;
+    }
+    .item-date {
+      color:#666;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .project-item {
+      margin-top:16px;
+    }
+    .project-item:first-child {
+      margin-top:0;
+    }
+    ul {
+      list-style:none;
+      padding-left:0;
+      margin-top:6px;
+    }
+    li {
+      padding-left:18px;
+      position:relative;
+      margin-bottom:4px;
+      font-size:13px;
+      line-height:1.5;
+      color:#555;
+    }
+    li:before {
+      content:"▸";
+      color:#3b82f6;
+      position:absolute;
+      left:0;
+      font-weight:bold;
+    }
+    .skills-grid {
+      display:grid;
+      gap:6px;
+    }
+    .skill-label {
+      font-weight:600;
+      color:#1e40af;
+      display:inline-block;
+      min-width:150px;
+      font-size:13px;
+    }
+    .skill-content {
+      color:#555;
+      font-size:13px;
+    }
+    p {
+      font-size:13px;
+      color:#555;
+      line-height:1.6;
+      margin:4px 0;
+    }
+
+    @media (max-width: 640px) {
+      .resume-container {
+        margin: 16px;
+      }
+      .header, .content {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-title">Portfolio</div>
+    <nav class="site-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="resume.html" class="nav-link active">Resume</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="resume-container">
+      <div class="header">
+        <h1>Layne Fester</h1>
+        <p class="tagline">
+          Computer Science student at the University of Wisconsin–Milwaukee.
+          Interested in software development, cybersecurity, and data work. 
+          Comfortable working with code, security tools, and documenting what I build.
+        </p>
+      </div>
+
+      <div class="content">
+        <!-- Education -->
+        <div class="section">
+          <h2 class="section-title">Education</h2>
+          <div class="item-header">
+            <div>
+              <div class="item-title">University of Wisconsin–Milwaukee</div>
+              <div class="item-subtitle">B.S. in Computer Science</div>
+            </div>
+            <div class="item-date">Expected May 2029</div>
+          </div>
+          <p>Relevant coursework: Computer Science Principles, Cybersecurity, Network Fundamentals, Python Programming</p>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="section">
+          <h2 class="section-title">Technical Skills</h2>
+          <div class="skills-grid">
+            <div>
+              <span class="skill-label">Languages:</span>
+              <span class="skill-content">Python, Java, SQL, HTML/CSS, JavaScript</span>
+            </div>
+            <div>
+              <span class="skill-label">Data &amp; Tools:</span>
+              <span class="skill-content">Pandas, basic SQL queries, Excel (formulas, charts), and working with JSON/CSV from APIs.</span>
+            </div>
+            <div>
+              <span class="skill-label">Security &amp; Systems:</span>
+              <span class="skill-content">Linux command line basics, Wireshark and Nmap in a small home lab, and basic Windows/Linux setup & troubleshooting.</span>
+            </div>
+            <div>
+              <span class="skill-label">Cloud &amp; Platforms:</span>
+              <span class="skill-content">Git/GitHub for projects and early AWSs</span>
+            </div>
+            <div>
+              <span class="skill-label">Strengths:</span>
+              <span class="skill-content">Pays attention to details, asks questions instead of guessing, and is reliable on group work / lab projects.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="section">
+          <h2 class="section-title">Certifications</h2>
+          <ul>
+            <li><strong>CompTIA Security+ (SY0-701)</strong> — 2025</li>
+            <li><strong>Microsoft Certified: Excel Expert</strong> — 2024</li>
+            <li><strong>Microsoft Certified: Word Expert</strong> — 2024</li>
+          </ul>
+        </div>
+
+        <!-- Projects & Technical Experience -->
+        <div class="section">
+          <h2 class="section-title">Projects &amp; Technical Experience</h2>
+
+          <div class="project-item">
+            <div class="item-header">
+              <div>
+                <div class="item-title">MarketViewPro – Stock &amp; News Dashboard</div>
+                <div class="item-subtitle">Python, JavaScript, HTML/CSS, Git</div>
+              </div>
+            </div>
+            <ul>
+              <li>Built a TradingView-style web dashboard that displays interactive stock charts with multiple time frames.</li>
+              <li>Wrote Python scripts to pull, clean, and organize historical price data into a format ready for analysis.</li>
+              <li>Implemented a simple model that flags potential short-term (24-hour) price movement scenarios based on recent trends.</li>
+              <li>Created a scraper for free news sources (no paid APIs) and matched headlines to ticker symbols to give context around price moves.</li>
+              <li>Documented setup steps, data sources, and assumptions so the project is easy to review and adjust.</li>
+            </ul>
+          </div>
+
+          <div class="project-item">
+            <div class="item-header">
+              <div>
+                <div class="item-title">Network Security Monitoring Dashboard</div>
+                <div class="item-subtitle">Python, Linux, Wireshark</div>
+              </div>
+            </div>
+            <ul>
+              <li>Set up a small lab environment to capture and inspect network traffic and highlight unusual patterns.</li>
+              <li>Used Wireshark and Nmap to explore ports, protocols, and basic detection of suspicious activity.</li>
+              <li>Logged findings and commands to practice clear documentation and repeatable steps.</li>
+            </ul>
+          </div>
+
+          <div class="project-item">
+            <div class="item-header">
+              <div>
+                <div class="item-title">Coding &amp; Automation Practice</div>
+                <div class="item-subtitle">Python, Bash, Git</div>
+              </div>
+            </div>
+            <ul>
+              <li>Built small scripts to automate file cleanup, basic data parsing, and simple reports from CSV/JSON files.</li>
+              <li>Used GitHub for version control, tracking changes and writing concise commit messages.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Professional Experience -->
+        <div class="section">
+          <h2 class="section-title">Professional Experience</h2>
+          <div class="item-header">
+            <div>
+              <div class="item-title">Front End Team Member</div>
+              <div class="item-subtitle">Menards — Fond du Lac, WI</div>
+            </div>
+            <div class="item-date">Apr 2024 – Sep 2024</div>
+          </div>
+          <ul>
+            <li>Handled cash and returns accurately, paying close attention to details and store policies.</li>
+            <li>Helped customers with questions and issues while keeping lines moving and staying calm under pressure.</li>
+            <li>Worked reliably on evenings and weekends and communicated clearly with supervisors and teammates.</li>
+          </ul>
+
+          <div class="item-header" style="margin-top:16px;">
+            <div>
+              <div class="item-title">Lifeguard</div>
+              <div class="item-subtitle">REC Department — Fond du Lac, WI</div>
+            </div>
+            <div class="item-date">May 2021 – Aug 2023</div>
+          </div>
+          <ul>
+            <li>Monitored swimmers and pool conditions to maintain a safe environment.</li>
+            <li>Enforced rules respectfully and communicated clearly with guests.</li>
+            <li>Consistently showed up prepared, attentive, and reliable for scheduled shifts.</li>
+          </ul>
+        </div>
+
+        <!-- Additional -->
+        <div class="section">
+          <h2 class="section-title">Additional Information</h2>
+          <p><strong>Currently learning:</strong> More Python for data work, SQL basics, and improving my documentation habits.</p>
+          <p><strong>Interests:</strong> Machine Learning, Security labs, and building tools that make data easier to understand.</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    © 2025 Layne Fester
+  </footer>
+</body>
+</html>
