@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Camera + NAS Setup - Portfolio</title>
+  <title>Security Camera + LAN-Only NAS - Portfolio</title>
   <link rel="icon" href="/tabicon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Security camera + NAS backup setup (small business) by Layne Fester." />
+  <meta name="description" content="Security camera + LAN-only NAS backup system (small business) by Layne Fester." />
   <style>
     html, body { margin: 0; padding: 0; }
     html { box-sizing: border-box; }
@@ -23,7 +23,6 @@
     main { flex: 1; }
     a { text-decoration: none; }
 
-    /* Header / Nav */
     .site-header {
       background: #ffffff;
       border-bottom: 1px solid #e2e8f0;
@@ -59,7 +58,6 @@
       border-bottom-color: #3b82f6;
     }
 
-    /* Footer */
     .site-footer {
       text-align: center;
       padding: 24px 16px 32px;
@@ -70,7 +68,6 @@
       margin-top: 40px;
     }
 
-    /* Page content */
     .wrap {
       max-width: 900px;
       margin: 0 auto;
@@ -99,6 +96,13 @@
       color: #1e40af;
     }
 
+    h3 {
+      margin: 18px 0 8px 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e40af;
+    }
+
     p {
       margin: 0 0 14px 0;
       color: #475569;
@@ -120,7 +124,6 @@
       margin: 22px 0;
     }
 
-    /* Button (matches MarketViewerPro style) */
     .topbar {
       display:flex;
       gap:10px;
@@ -138,34 +141,6 @@
     }
     .btn.secondary { background:#fff; color:#1e40af; border:1px solid #cbd5e1; }
     .btn.secondary:hover { border-color:#3b82f6; }
-
-    /* Mobile nav: single line, no wrap, no visible scrollbar */
-    @media (max-width: 520px) {
-      .site-header {
-        padding: 12px 14px;
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .site-title { font-size: 16px; flex: 0 0 auto; }
-
-      .site-nav {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        gap: 12px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-
-      .site-nav::-webkit-scrollbar { display: none; }
-
-      .nav-link { font-size: 13px; padding-bottom: 2px; flex: 0 0 auto; }
-    }
   </style>
 </head>
 
@@ -182,10 +157,9 @@
 
   <main>
     <div class="wrap">
-      <h1>Security Camera + NAS Setup (Small Business)</h1>
+      <h1>Security Camera + LAN-Only NAS (Small Business)</h1>
       <p class="subtitle">
-        A security setup I built for a small welding shop. The goal was a system that’s organized, secure, and resilient
-        against data loss and ransomware.
+        Designed and deployed a LAN-only NAS backup system focused on ransomware recovery and data integrity, alongside a separate DVR-based security camera installation.
       </p>
 
       <div class="topbar">
@@ -193,11 +167,10 @@
       </div>
 
       <h2>Overview</h2>
-      <p>The setup includes:</p>
       <ul>
-        <li>4 security cameras connected to a DVR</li>
-        <li>A dedicated network switch for the camera system</li>
-        <li>A NAS used for local backups of important business data</li>
+        <li>LAN-only NAS backup system for ransomware recovery</li>
+        <li>Separate DVR-based security camera system</li>
+        <li>Dedicated network switching for isolation and control</li>
       </ul>
 
       <hr />
@@ -206,59 +179,82 @@
       <p>
         I installed four cameras connected to a DVR, which is physically secured and not given unnecessary internet exposure.
       </p>
-      <p>I avoided leaving default settings in place:</p>
       <ul>
-        <li>Default passwords were changed</li>
-        <li>Unused services were disabled</li>
-        <li>Remote access was limited</li>
+        <li>Default passwords changed</li>
+        <li>Unused services disabled</li>
+        <li>Remote access limited</li>
       </ul>
-      <p>The goal was to treat the camera system as something that should not be trusted by default.</p>
-
-      <hr />
-
-      <h2>Network Setup</h2>
       <p>
-        Instead of plugging everything straight into the router, I added a dedicated network switch for the cameras and DVR.
+        The DVR operates independently from the NAS and uses its own internal 2TB storage, keeping video recording isolated from the backup infrastructure.
       </p>
-      <p>This helped with:</p>
-      <ul>
-        <li>Keeping the network cleaner and more organized</li>
-        <li>Reducing unnecessary traffic on the main network</li>
-        <li>Making it easier to control which devices talk to each other</li>
-      </ul>
-      <p>The switch also makes the system easier to scale or troubleshoot later.</p>
 
       <hr />
 
       <h2>NAS &amp; Backups</h2>
       <p>
-        I set up a NAS on the network to act as a local backup system for important files—mainly for protection against ransomware and data loss.
+        The NAS was designed as a <strong>dedicated, LAN-only backup system</strong> with the primary goal of ransomware recovery, not convenience or remote access.
       </p>
       <p>
-        Backups are scheduled instead of manual, so they actually happen. Access permissions are limited so normal user accounts can’t modify or delete backups,
-        which helps prevent ransomware from encrypting them.
+        It is physically connected only to a local switch and two office workstations using Ethernet. The NAS has <strong>no internet access and no Wi-Fi connectivity</strong>, reducing its attack surface and isolating it from external threats.
       </p>
-      <p>Keeping backups local also avoids relying on third-party cloud services.</p>
+
+      <h3>Storage &amp; Redundancy</h3>
+      <ul>
+        <li>Two 2TB hard drives configured as a mirrored storage pool</li>
+        <li>2TB usable capacity with full redundancy</li>
+        <li>Single-drive failure does not result in data loss</li>
+      </ul>
+
+      <h3>Snapshot Protection</h3>
+      <ul>
+        <li>Daily snapshots retained for 30 days</li>
+        <li>Snapshots are immutable to client systems</li>
+        <li>Prior snapshots remain recoverable even if files are encrypted by ransomware</li>
+      </ul>
+
+      <h3>Access Model</h3>
+      <ul>
+        <li>Centralized backup dataset accessed over SMB</li>
+        <li>Client machines authenticate with non-administrative users</li>
+        <li>No ability to modify snapshots or system configuration</li>
+        <li>Administrative access restricted to IT only</li>
+      </ul>
+
+      <p>
+        The system is designed under the assumption that client computers cannot be trusted. Backups remain protected even if a workstation is fully compromised.
+      </p>
 
       <hr />
 
-      <h2>Security Notes</h2>
-      <p>This isn’t an enterprise environment, but the setup follows the same basic ideas:</p>
+      <h2>Backup Workflow</h2>
+      <p>
+        Backups are <strong>user-initiated and controlled</strong>, rather than fully automated, to ensure visibility and reduce silent failures.
+      </p>
       <ul>
-        <li>Reduce attack surface</li>
-        <li>Don’t trust default credentials</li>
-        <li>Limit access where possible</li>
-        <li>Plan for recovery, not just prevention</li>
+        <li>Custom local backup utility with a simple graphical interface</li>
+        <li>Saved configuration for important directories</li>
+        <li>One-click execution to update backups</li>
       </ul>
+
+      <h3>Typical Workflow</h3>
+      <ul>
+        <li>User launches the backup utility</li>
+        <li>Logs in</li>
+        <li>Clicks <strong>Update Backup</strong></li>
+        <li>Selected files are transferred to the NAS</li>
+      </ul>
+
+      <p>
+        Backups are performed weekly or as needed. Snapshot retention ensures historical recovery points even if a recent backup contains encrypted or corrupted files.
+      </p>
 
       <hr />
 
       <h2>Result</h2>
-      <p>The business now has:</p>
       <ul>
-        <li>Reliable video coverage</li>
-        <li>Cleaner network infrastructure</li>
-        <li>Automated backups that protect against data loss</li>
+        <li>Ransomware-resilient backups for business-critical data</li>
+        <li>Isolated and hardened backup infrastructure</li>
+        <li>Independent, reliable video surveillance</li>
       </ul>
     </div>
   </main>
