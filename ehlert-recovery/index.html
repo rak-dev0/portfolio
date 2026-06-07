@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Infrastructure Recovery & Website Modernization - Portfolio</title>
+  <link rel="icon" href="/tabicon.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ehlert Welding infrastructure recovery and website modernization by Layne Fester: DNS migration to Cloudflare, Microsoft 365 email, and a rebuilt website." />
+  <style>
+    html, body { margin: 0; padding: 0; }
+    html { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      background: #f5fbff;
+      color: #0f172a;
+    }
+
+    main { flex: 1; }
+    a { text-decoration: none; }
+
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .site-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    .site-nav { display: flex; gap: 16px; }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: #475569;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-link:hover { color: #1e3a8a; }
+
+    .nav-link.active {
+      color: #1e3a8a;
+      border-bottom-color: #3b82f6;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 24px 16px 32px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      margin-top: 40px;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 56px 20px;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1e3a8a;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0 0 18px 0;
+      color: #475569;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .role-line {
+      margin: 0 0 6px 0;
+      font-size: 14px;
+      color: #1e40af;
+      font-weight: 600;
+    }
+
+    h2 {
+      margin: 30px 0 10px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e40af;
+    }
+
+    h3 {
+      margin: 18px 0 8px 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e40af;
+    }
+
+    p {
+      margin: 0 0 14px 0;
+      color: #475569;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    ul {
+      margin: 8px 0 14px 0;
+      padding-left: 18px;
+      color: #475569;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 22px 0;
+    }
+
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin: 14px 0 4px 0; }
+    .tag {
+      font-size:12px;
+      color:#1e40af;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#eef2ff;
+      border:1px solid #e2e8f0;
+    }
+
+    .topbar {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 16px 0 18px;
+    }
+    .btn {
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:10px;
+      background: linear-gradient(135deg,#1e3a8a,#3b82f6);
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+    }
+    .btn.secondary { background:#fff; color:#1e40af; border:1px solid #cbd5e1; }
+    .btn.secondary:hover { border-color:#3b82f6; }
+
+    @media (max-width: 520px) {
+      .site-header { padding: 12px 14px; flex-direction: row; align-items: center; gap: 12px; }
+      .site-title { font-size: 16px; }
+      .site-nav {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .nav-link { font-size:13px; padding-bottom:2px; }
+      h1 { font-size: 30px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="site-title">Portfolio</div>
+    <nav class="site-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/projects/" class="nav-link active">Projects</a>
+      <a href="/resume/" class="nav-link">Resume</a>
+      <a href="/contact/" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Ehlert Welding Infrastructure Recovery &amp; Website Modernization</h1>
+      <p class="role-line">Role: IT Administrator · June 2026</p>
+      <p class="subtitle">
+        Recovered and rebuilt a small manufacturing business's web and email infrastructure after a
+        legacy hosting environment failed — migrating DNS to Cloudflare, moving email to Microsoft 365,
+        and rebuilding the company website with modern security practices.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Cloudflare</span>
+        <span class="tag">Microsoft 365</span>
+        <span class="tag">Exchange Online</span>
+        <span class="tag">Microsoft Entra ID</span>
+        <span class="tag">DNS</span>
+        <span class="tag">SPF / DKIM / DMARC</span>
+        <span class="tag">HTML / CSS / JavaScript</span>
+      </div>
+
+      <div class="topbar">
+        <a class="btn secondary" href="/projects/">← Back to Projects</a>
+      </div>
+
+      <h2>Project Overview</h2>
+      <p>
+        After a legacy hosting environment failed, Ehlert Welding lost both its website and company
+        email services. The website became inaccessible, Outlook clients stopped syncing, and the
+        business was at risk of losing access to critical communication channels.
+      </p>
+      <p>
+        I took ownership of the recovery effort and rebuilt the company's web and email infrastructure
+        using modern platforms and security practices. Over the course of several days, I restored
+        business communications, migrated email to Microsoft 365, moved DNS management to Cloudflare,
+        and rebuilt the company's public-facing website.
+      </p>
+
+      <hr />
+
+      <h2>Infrastructure Recovery</h2>
+      <ul>
+        <li>Investigated the outage and identified failures in the existing hosting and email environment.</li>
+        <li>Verified domain ownership and ensured the company maintained control of its critical assets.</li>
+        <li>Documented existing infrastructure and planned a migration path away from legacy services.</li>
+        <li>Restored website and email functionality with minimal business disruption.</li>
+      </ul>
+
+      <h2>DNS &amp; Cloud Management</h2>
+      <ul>
+        <li>Migrated DNS management to Cloudflare.</li>
+        <li>Updated nameservers and verified DNS propagation.</li>
+        <li>Configured website and email DNS records.</li>
+        <li>Implemented SSL/TLS and domain redirects.</li>
+        <li>Established direct control over infrastructure that had previously been managed by third parties.</li>
+      </ul>
+
+      <h2>Microsoft 365 Deployment</h2>
+      <ul>
+        <li>Deployed Microsoft 365 Business and Exchange Online.</li>
+        <li>Migrated business email from a legacy provider.</li>
+        <li>Configured SPF, DKIM, and DMARC email authentication.</li>
+        <li>Implemented multi-factor authentication for all users.</li>
+        <li>Restored company mailboxes while keeping existing email addresses intact.</li>
+        <li>Backed up and preserved historical Outlook data where possible.</li>
+      </ul>
+
+      <h2>Website Rebuild</h2>
+      <ul>
+        <li>Rebuilt the company website from the ground up.</li>
+        <li>Replaced a site that had not been significantly updated in over a decade.</li>
+        <li>Created a modern, responsive design that works on desktop and mobile devices.</li>
+        <li>Updated company information, services, and project galleries.</li>
+        <li>Improved usability, performance, and search engine visibility.</li>
+        <li>Implemented modern security headers and HTTPS enforcement.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Technologies Used</h2>
+      <p>
+        HTML, CSS, JavaScript, Cloudflare, Microsoft 365, Exchange Online, Microsoft Entra ID,
+        DNS administration, Outlook, and SPF / DKIM / DMARC.
+      </p>
+
+      <hr />
+
+      <h2>Results</h2>
+      <ul>
+        <li>Restored company website operations.</li>
+        <li>Restored business email services.</li>
+        <li>Eliminated reliance on legacy hosting infrastructure.</li>
+        <li>Improved security through MFA and modern email authentication.</li>
+        <li>Established direct ownership and management of DNS, web hosting, and email systems.</li>
+        <li>Delivered a modernized website and communication platform for ongoing business operations.</li>
+      </ul>
+
+      <hr />
+
+      <h2>What I Learned</h2>
+      <p>
+        This was my first real-world deployment involving DNS administration, Microsoft 365, email
+        migration, and production infrastructure. The project gave me hands-on experience with
+        troubleshooting live business systems, managing service migrations, and balancing technical
+        decisions with business needs.
+      </p>
+      <p>
+        More importantly, it reinforced the importance of documentation, backups, change management,
+        and maintaining direct control over critical infrastructure.
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">© 2025 Layne Fester</footer>
+</body>
+</html>
