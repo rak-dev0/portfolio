@@ -8,11 +8,12 @@ Live site: https://laynefester.me
 
 A simple web portfolio
 
-- `index.html` — home
-- `projects.html` — project hub
-- `camera-nas.html` — write-up
-- `resume.html` — resume page
-- `contact.html` — contact links
+- `index` — home
+- `projects` — project hub
+- `camera-nas` — write-up
+- `ehlert-recovery` — write-up
+- `resume` — resume page
+- `contact` — contact links
 
 ## License
 No license / personal project.
