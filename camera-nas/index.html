@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Security Camera + LAN-Only NAS - Portfolio</title>
+  <title>Local NAS Backups and Camera Installation - Layne Fester</title>
   <link rel="icon" href="/tabicon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Security camera + LAN-only NAS backup system (small business) by Layne Fester." />
+  <meta name="description" content="Local NAS storage for manual file backups from two office computers and a separate DVR camera installation by Layne Fester." />
   <style>
     html, body { margin: 0; padding: 0; }
     html { box-sizing: border-box; }
@@ -141,124 +141,56 @@
     }
     .btn.secondary { background:#fff; color:#1e40af; border:1px solid #cbd5e1; }
     .btn.secondary:hover { border-color:#3b82f6; }
+
+    /* Keep the existing layout usable with the longer Experience label. */
+    *, *::before, *::after { box-sizing: border-box; }
+    a:focus-visible { outline: 3px solid #1e40af; outline-offset: 4px; }
+    .text-link { color: #1e40af; text-decoration: underline; text-underline-offset: 3px; }
+    .lab-figure { margin: 24px 0; }
+    .lab-figure img { display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
+    .lab-figure figcaption { font-size: 13px; line-height: 1.6; color: #475569; margin-top: 8px; }
+    .component-list dt { color: #1e40af; font-weight: 600; margin-top: 14px; }
+    .component-list dd { margin: 4px 0 0; color: #475569; line-height: 1.7; }
+    .contact-header h1 { font-size: 36px; color: #1e3a8a; margin: 0 0 16px; }
+    .contact-link { overflow-wrap: anywhere; }
+    @media (max-width: 520px) {
+      .site-header { flex-wrap: wrap; gap: 10px; }
+      .site-nav { flex: 1 0 100%; justify-content: flex-start; gap: 18px; overflow-x: visible; }
+      .item-header { flex-wrap: wrap; }
+      .contact-header h1 { font-size: 30px; }
+    }
+
   </style>
 </head>
 
 <body>
   <header class="site-header">
     <div class="site-title">Portfolio</div>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-link">Home</a>
-      <a href="/projects/" class="nav-link active">Projects</a>
-      <a href="/resume/" class="nav-link">Resume</a>
+      <a href="/projects/" class="nav-link active" aria-current="page">Projects</a>
+      <a href="/resume/" class="nav-link">Experience</a>
       <a href="/contact/" class="nav-link">Contact</a>
     </nav>
   </header>
 
   <main>
-    <div class="wrap">
-      <h1>Security Camera + LAN-Only NAS (Small Business)</h1>
-      <p class="subtitle">
-        Designed and deployed a LAN-only NAS backup system focused on ransomware recovery and data integrity, alongside a separate DVR-based security camera installation.
-      </p>
-
-      <div class="topbar">
-        <a class="btn secondary" href="/projects/">← Back to Projects</a>
-      </div>
-
-      <h2>Overview</h2>
-      <ul>
-        <li>LAN-only NAS backup system for ransomware recovery</li>
-        <li>Separate DVR-based security camera system</li>
-        <li>Dedicated network switching for isolation and control</li>
-      </ul>
-
-      <hr />
-
-      <h2>Camera System</h2>
-      <p>
-        I installed four cameras connected to a DVR, which is physically secured and not given unnecessary internet exposure.
-      </p>
-      <ul>
-        <li>Default passwords changed</li>
-        <li>Unused services disabled</li>
-        <li>Remote access limited</li>
-      </ul>
-      <p>
-        The DVR operates independently from the NAS and uses its own internal 2TB storage, keeping video recording isolated from the backup infrastructure.
-      </p>
-
-      <hr />
-
-      <h2>NAS &amp; Backups</h2>
-      <p>
-        The NAS was designed as a <strong>dedicated, LAN-only backup system</strong> with the primary goal of ransomware recovery, not convenience or remote access.
-      </p>
-      <p>
-        It is physically connected only to a local switch and two office workstations using Ethernet. The NAS has <strong>no internet access and no Wi-Fi connectivity</strong>, reducing its attack surface and isolating it from external threats.
-      </p>
-
-      <h3>Storage &amp; Redundancy</h3>
-      <ul>
-        <li>Two 2TB hard drives configured as a mirrored storage pool</li>
-        <li>2TB usable capacity with full redundancy</li>
-        <li>Single-drive failure does not result in data loss</li>
-      </ul>
-
-      <h3>Snapshot Protection</h3>
-      <ul>
-        <li>Daily snapshots retained for 30 days</li>
-        <li>Snapshots are immutable to client systems</li>
-        <li>Prior snapshots remain recoverable even if files are encrypted by ransomware</li>
-      </ul>
-
-      <h3>Access Model</h3>
-      <ul>
-        <li>Centralized backup dataset accessed over SMB</li>
-        <li>Client machines authenticate with non-administrative users</li>
-        <li>No ability to modify snapshots or system configuration</li>
-        <li>Administrative access restricted to IT only</li>
-      </ul>
-
-      <p>
-        The system is designed under the assumption that client computers cannot be trusted. Backups remain protected even if a workstation is fully compromised.
-      </p>
-
-      <hr />
-
-      <h2>Backup Workflow</h2>
-      <p>
-        Backups are <strong>user-initiated and controlled</strong>, rather than fully automated, to ensure visibility and reduce silent failures.
-      </p>
-      <ul>
-        <li>Custom local backup utility with a simple graphical interface</li>
-        <li>Saved configuration for important directories</li>
-        <li>One-click execution to update backups</li>
-      </ul>
-
-      <h3>Typical Workflow</h3>
-      <ul>
-        <li>User launches the backup utility</li>
-        <li>Logs in</li>
-        <li>Clicks <strong>Update Backup</strong></li>
-        <li>Selected files are transferred to the NAS</li>
-      </ul>
-
-      <p>
-        Backups are performed weekly or as needed. Snapshot retention ensures historical recovery points even if a recent backup contains encrypted or corrupted files.
-      </p>
-
-      <hr />
-
-      <h2>Result</h2>
-      <ul>
-        <li>Ransomware-resilient backups for business-critical data</li>
-        <li>Isolated and hardened backup infrastructure</li>
-        <li>Independent, reliable video surveillance</li>
-      </ul>
+<div class="wrap">
+      <h1>Local NAS Backups &amp; Camera Installation</h1>
+      <p class="subtitle">Practical storage and hardware work for a five-person welding business.</p>
+      <div class="topbar"><a class="btn secondary" href="/projects/">← Back to Projects</a></div>
+      <h2>Local file backups</h2>
+      <p>I set up a NAS that two office computers access over Ethernet with password-protected access. The NAS is not connected directly to the router. Staff copy files to it as needed, and I also perform backups periodically.</p>
+      <p>The normal workflow is primarily manual. I used AI assistance to create a Python backup utility intended to simplify copying files, but it has not replaced the shop's usual manual process.</p>
+      <h2>Recovery testing</h2>
+      <p>I have not performed a snapshot restore test. My next step is to review the backup configuration and document a recovery test using noncritical files. This distinguishes having backup copies from demonstrating that a recovery process works.</p>
+      <h2>Separate camera system</h2>
+      <p>I installed four cameras connected to a DVR with its own storage. Video recording is separate from the NAS file-backup storage.</p>
+      <h2>What I learned</h2>
+      <p>The project gave me experience connecting hardware, setting up access and supporting a workflow used by other people. It also highlighted the importance of making backups easy to perform and checking that files can actually be restored.</p>
     </div>
   </main>
 
-  <footer class="site-footer">© 2025 Layne Fester</footer>
+  <footer class="site-footer">© 2026 Layne Fester</footer>
 </body>
 </html>

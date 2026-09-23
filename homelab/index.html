@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Email Migration and Website Recovery - Layne Fester</title>
+  <title>Active Directory and Security Logging Homelab - Layne Fester</title>
   <link rel="icon" href="/tabicon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="How Layne Fester restored a small business's email and website with Microsoft 365, DNS changes, email authentication and MFA." />
+  <meta name="description" content="A personal five-VM Proxmox lab with Active Directory, Group Policy, Windows auditing, Sysmon and Wazuh event collection." />
   <style>
     html, body { margin: 0; padding: 0; }
     html { box-sizing: border-box; }
@@ -200,7 +200,7 @@
     <div class="site-title">Portfolio</div>
     <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-link">Home</a>
-      <a href="/projects/" class="nav-link active" aria-current="page">Projects</a>
+      <a href="/projects/" class="nav-link">Projects</a>
       <a href="/resume/" class="nav-link">Experience</a>
       <a href="/contact/" class="nav-link">Contact</a>
     </nav>
@@ -208,25 +208,31 @@
 
   <main>
 <div class="wrap">
-      <p class="role-line">IT Administrator · Ehlert Welding Co., Inc. · June 2026 project</p>
-      <h1>Small Business Email Migration &amp; Website Recovery</h1>
-      <p class="subtitle">Restoring working services for a five-person welding business after a legacy hosting outage.</p>
-      <div class="tags"><span class="tag">Microsoft 365</span><span class="tag">Exchange Online</span><span class="tag">Cloudflare / DNS</span><span class="tag">SPF / DKIM / DMARC</span><span class="tag">MFA</span></div>
+      <p class="role-line">Personal project · Setup documented June 2026</p>
+      <h1>Active Directory &amp; Security Logging Homelab</h1>
+      <p class="subtitle">A hands-on foundation for learning Windows and Linux administration and centralized security logging.</p>
       <div class="topbar"><a class="btn secondary" href="/projects/">← Back to Projects</a></div>
-      <h2>The problem</h2>
-      <p>The company's legacy hosting environment failed, affecting both email and the public website. As the person handling IT, I worked to restore those services and take over their ongoing administration.</p>
-      <h2>What I did</h2>
-      <ul>
-        <li>Migrated business email to Microsoft 365 and Exchange Online while retaining the company's email addresses.</li>
-        <li>Configured SPF, DKIM and DMARC email authentication and enabled multi-factor authentication.</li>
-        <li>Moved DNS management to Cloudflare and configured the website and email records.</li>
-        <li>Rebuilt and deployed the website with updated company information and a responsive layout.</li>
-        <li>Managed domain registration, hosting and HTTPS, and continued supporting users after the migration.</li>
-      </ul>
-      <h2>Outcome</h2>
-      <p>The business had working email and website services again. I continue to administer the services and help with day-to-day IT issues, including remote support while attending college.</p>
-      <h2>What I learned</h2>
-      <p>This project connected DNS, email authentication, account configuration and user support. It showed me why a business needs clear ownership of its domain and service accounts, and why a migration needs to work for the people who use the systems.</p>
+      <h2>What I built</h2>
+      <p>Five virtual machines run on one Proxmox host. The lab combines an Active Directory domain, a Windows workstation, Ubuntu services and Wazuh, with a Kali VM prepared for future practice.</p>
+      <figure class="lab-figure">
+        <img src="/assets/homelab-overview.svg" width="1120" height="650" alt="Five virtual machines on one Proxmox host: Windows workstation, Active Directory domain controller, Ubuntu DNS host, Wazuh server and Kali practice VM. Windows and Ubuntu agents send events to Wazuh.">
+        <figcaption>Conceptual overview of the documented setup, not a live status display. <a class="text-link" href="/assets/homelab-overview.svg">Open the full-size diagram</a>.</figcaption>
+      </figure>
+      <dl class="component-list">
+        <dt>Windows Server</dt><dd>Active Directory Domain Services and DNS, with organizational units, users and groups.</dd>
+        <dt>Windows 11</dt><dd>A domain-joined workstation with an audit baseline applied through Group Policy.</dd>
+        <dt>Ubuntu DNS host</dt><dd>Pi-hole DNS filtering and a Wazuh agent.</dd>
+        <dt>Ubuntu Wazuh host</dt><dd>Wazuh server, indexer and dashboard for centralized event collection.</dd>
+        <dt>Kali Linux</dt><dd>A practice VM prepared for future exercises against my own lab systems.</dd>
+      </dl>
+      <h2>Administration and logging</h2>
+      <p>The domain controller handles domain DNS queries and forwards external requests to Pi-hole. Conditional forwarding sends domain lookups from the DNS filter back to the domain controller.</p>
+      <p>I configured Windows auditing, command-line process-creation events, PowerShell logging and Sysmon. A Group Policy linked to the workstation organizational unit applies the workstation audit settings; the domain controller has separately configured auditing.</p>
+      <h2>What I checked during setup</h2>
+      <p>My build notes record successful collection of Windows Security, Sysmon and PowerShell events in Wazuh. Agents were enrolled on the domain controller, Windows workstation and Ubuntu DNS host. The Wazuh manager also monitors itself.</p>
+      <p>I worked through DNS selection that prevented the workstation from joining the domain and a Linux storage-allocation issue that interrupted the Wazuh installation.</p>
+      <h2>Next steps</h2>
+      <p>The completed work is infrastructure and logging setup. Documented detection exercises and alert tuning are next: generate a known test event in the lab, trace its logs and explain what the monitoring shows. Network segmentation and VPN access are future additions.</p>
     </div>
   </main>
 

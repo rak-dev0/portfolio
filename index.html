@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Home - Portfolio</title>
+  <title>IT and Cybersecurity Portfolio - Layne Fester</title>
   <link rel="icon" href="/tabicon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Layne Fester - Computer Science student at UW-Milwaukee exploring AI and Cybersecurity." />
+  <meta name="description" content="Layne Fester, UW-Milwaukee Computer Science student and Security+ holder with small-business IT experience, seeking Summer 2027 internships." />
   <style>
     html, body {
       margin: 0;
@@ -93,7 +93,7 @@
       padding: 60px 20px;
       font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     }
-    
+
     .hero-content {
       max-width: 1100px;
       width: 100%;
@@ -102,11 +102,11 @@
       gap: 60px;
       align-items: center;
     }
-    
+
     .hero-text {
       padding-right: 20px;
     }
-    
+
     .hero-text h1 {
       font-size: 48px;
       font-weight: 700;
@@ -114,33 +114,33 @@
       margin: 0 0 12px 0;
       line-height: 1.2;
     }
-    
+
     .hero-subtitle {
       font-size: 18px;
       color: #3b82f6;
       margin: 0 0 20px 0;
       font-weight: 500;
     }
-    
+
     .hero-subtitle .dot {
       color: #94a3b8;
       margin: 0 8px;
     }
-    
+
     .hero-description {
       font-size: 16px;
       color: #475569;
       line-height: 1.7;
       margin: 0 0 32px 0;
     }
-    
+
     .hero-buttons {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
       justify-content: flex-start;
     }
-    
+
     .btn {
       padding: 12px 28px;
       border-radius: 6px;
@@ -151,33 +151,33 @@
       transition: all 0.3s ease;
       cursor: pointer;
     }
-    
+
     .btn-primary {
       background: linear-gradient(135deg, #1e3a8a, #3b82f6);
       color: white;
       box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
     }
-    
+
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
     }
-    
+
     .btn-secondary {
       background: white;
       color: #1e40af;
       border: 2px solid #3b82f6;
     }
-    
+
     .btn-secondary:hover {
       background: #eff6ff;
       transform: translateY(-2px);
     }
-    
+
     .hero-image {
       position: relative;
     }
-    
+
     .hero-image img {
       width: 100%;
       max-width: 450px;
@@ -187,7 +187,7 @@
       display: block;
       margin: 0 auto;
     }
-    
+
     .hero-badge {
       position: absolute;
       bottom: 20px;
@@ -200,33 +200,33 @@
       font-weight: 600;
       color: #1e40af;
     }
-    
+
     @media (max-width: 768px) {
       .hero-content {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
       }
-      
+
       .hero-text {
         padding-right: 0;
       }
-      
+
       .hero-text h1 {
         font-size: 36px;
       }
-      
+
       .hero-buttons {
         justify-content: center;
       }
-      
+
       .hero-badge {
         position: static;
         display: inline-block;
         margin-top: 16px;
       }
     }
-	
+
 	/* Mobile nav: single line, no wrap, no visible scrollbar */
 	@media (max-width: 520px) {
 	  .site-header {
@@ -265,39 +265,54 @@
 		flex: 0 0 auto;
 	  }
 	}
-		
+
+
+    /* Keep the existing layout usable with the longer Experience label. */
+    *, *::before, *::after { box-sizing: border-box; }
+    a:focus-visible { outline: 3px solid #1e40af; outline-offset: 4px; }
+    .text-link { color: #1e40af; text-decoration: underline; text-underline-offset: 3px; }
+    .lab-figure { margin: 24px 0; }
+    .lab-figure img { display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
+    .lab-figure figcaption { font-size: 13px; line-height: 1.6; color: #475569; margin-top: 8px; }
+    .component-list dt { color: #1e40af; font-weight: 600; margin-top: 14px; }
+    .component-list dd { margin: 4px 0 0; color: #475569; line-height: 1.7; }
+    .contact-header h1 { font-size: 36px; color: #1e3a8a; margin: 0 0 16px; }
+    .contact-link { overflow-wrap: anywhere; }
+    @media (max-width: 520px) {
+      .site-header { flex-wrap: wrap; gap: 10px; }
+      .site-nav { flex: 1 0 100%; justify-content: flex-start; gap: 18px; overflow-x: visible; }
+      .item-header { flex-wrap: wrap; }
+      .contact-header h1 { font-size: 30px; }
+    }
+
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="site-title">Portfolio</div>
-	<nav class="site-nav">
-	  <a href="/" class="nav-link active">Home</a>
+	<nav class="site-nav" aria-label="Main navigation">
+	  <a href="/" class="nav-link active" aria-current="page">Home</a>
 	  <a href="/projects/" class="nav-link">Projects</a>
-	  <a href="/resume/" class="nav-link">Resume</a>
+	  <a href="/resume/" class="nav-link">Experience</a>
 	  <a href="/contact/" class="nav-link">Contact</a>
 	</nav>
   </header>
 
   <main>
-    <div class="hero-container">
+<div class="hero-container">
       <div class="hero-content">
         <div class="hero-text">
           <h1>Layne Fester</h1>
-          <p class="hero-subtitle">
-            Student <span class="dot">●</span> Computer Science at UW-Milwaukee
-          </p>
-          <p class="hero-description">
-            Exploring the world of Cybersecurity &amp; AI with the goal of making technology safer and more reliable for everyone.
-          </p>
+          <p class="hero-subtitle">Computer Science at UW-Milwaukee <span class="dot">●</span> CompTIA Security+</p>
+          <p class="hero-description">I handle IT for a five-person welding business, from Microsoft 365 and email to DNS, web hosting, and computer and printer support. In my personal lab, I practice Active Directory administration and security logging.</p>
+          <p class="hero-description">I graduate in May 2029 and am seeking a <strong>Summer 2027 IT or cybersecurity internship</strong>.</p>
           <div class="hero-buttons">
-			<a href="/projects/" class="btn btn-primary">View Projects</a>
-            <a href="/contact/" class="btn btn-primary">Get in Touch</a>
+            <a href="/projects/" class="btn btn-primary">View Projects</a>
+            <a href="/contact/" class="btn btn-secondary">Get in Touch</a>
           </div>
         </div>
-        
         <div class="hero-image">
-          <img src="https://i.imgur.com/CFOfcA2.jpeg" alt="Layne Fester">
+          <img src="/assets/layne-fester-portrait.png" alt="Layne Fester">
           <div class="hero-badge">🎓 Class of 2029</div>
         </div>
       </div>
@@ -305,7 +320,7 @@
   </main>
 
   <footer class="site-footer">
-    © 2025 Layne Fester
+    © 2026 Layne Fester
   </footer>
 </body>
 </html>

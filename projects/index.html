@@ -5,7 +5,7 @@
   <title>Projects - Layne Fester</title>
   <link rel="icon" href="/tabicon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Projects and case studies by Layne Fester." />
+  <meta name="description" content="Small-business email migration, Active Directory and Wazuh lab setup, and local NAS and camera projects by Layne Fester." />
   <style>
     html, body { margin:0; padding:0; }
     html { box-sizing: border-box; }
@@ -119,62 +119,70 @@
       }
       .nav-link{ font-size:13px; padding-bottom:2px; }
     }
+
+    /* Keep the existing layout usable with the longer Experience label. */
+    *, *::before, *::after { box-sizing: border-box; }
+    a:focus-visible { outline: 3px solid #1e40af; outline-offset: 4px; }
+    .text-link { color: #1e40af; text-decoration: underline; text-underline-offset: 3px; }
+    .lab-figure { margin: 24px 0; }
+    .lab-figure img { display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
+    .lab-figure figcaption { font-size: 13px; line-height: 1.6; color: #475569; margin-top: 8px; }
+    .component-list dt { color: #1e40af; font-weight: 600; margin-top: 14px; }
+    .component-list dd { margin: 4px 0 0; color: #475569; line-height: 1.7; }
+    .contact-header h1 { font-size: 36px; color: #1e3a8a; margin: 0 0 16px; }
+    .contact-link { overflow-wrap: anywhere; }
+    @media (max-width: 520px) {
+      .site-header { flex-wrap: wrap; gap: 10px; }
+      .site-nav { flex: 1 0 100%; justify-content: flex-start; gap: 18px; overflow-x: visible; }
+      .item-header { flex-wrap: wrap; }
+      .contact-header h1 { font-size: 30px; }
+    }
+
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="site-title">Portfolio</div>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Main navigation">
       <a href="/" class="nav-link">Home</a>
-      <a href="/projects/" class="nav-link active">Projects</a>
-      <a href="/resume/" class="nav-link">Resume</a>
+      <a href="/projects/" class="nav-link active" aria-current="page">Projects</a>
+      <a href="/resume/" class="nav-link">Experience</a>
       <a href="/contact/" class="nav-link">Contact</a>
     </nav>
   </header>
 
   <main>
-    <div class="wrap">
+<div class="wrap">
       <h1>Projects</h1>
-      <p></p>
-
+      <p>Practical IT work for a small business, alongside a personal lab for learning systems administration and security logging.</p>
       <div class="featured-wrap">
-        <div class="card featured">
-          <h2>Ehlert Welding Infrastructure Recovery &amp; Website Modernization</h2>
-          <div class="meta">IT Administrator · Web &amp; email infrastructure recovery</div>
-          <p>
-            Recovered and rebuilt a small business's web and email infrastructure after a legacy hosting
-            failure — migrating DNS to Cloudflare, moving email to Microsoft 365 / Exchange Online, and
-            rebuilding the company website with modern security practices.
-          </p>
-          <div class="tags">
-            <span class="tag">Cloudflare</span>
-            <span class="tag">Microsoft 365</span>
-            <span class="tag">Exchange Online</span>
-            <span class="tag">DNS</span>
-            <span class="tag">SPF / DKIM / DMARC</span>
-          </div>
-          <div class="btn-row">
-            <a class="btn" href="/ehlert-recovery/">Read the write-up</a>
-          </div>
-        </div>
+        <article class="card featured">
+          <h2>Small Business Email Migration &amp; Website Recovery</h2>
+          <div class="meta">IT Administrator · Ehlert Welding Co., Inc.</div>
+          <p>Restored email and website services after a legacy hosting outage. Migrated email to Microsoft 365, configured email authentication and MFA, moved DNS to Cloudflare, and rebuilt the website.</p>
+          <div class="tags"><span class="tag">Microsoft 365</span><span class="tag">Exchange Online</span><span class="tag">DNS / Cloudflare</span><span class="tag">SPF / DKIM / DMARC</span></div>
+          <div class="btn-row"><a class="btn" href="/ehlert-recovery/">Read the recovery case study</a></div>
+        </article>
       </div>
-
       <div class="grid">
-        <div class="card">
-          <h2>Security Camera + LAN-Only NAS (Small Business)</h2>
-          <div class="meta">Physical security + ransomware-resilient backups</div>
-          <p>
-            Designed and deployed a LAN-only NAS backup system focused on ransomware recovery and data integrity,
-            alongside a separate DVR-based security camera installation.
-          </p>
-          <div class="btn-row">
-            <a class="btn" href="/camera-nas/">Read the write-up</a>
-          </div>
-        </div>
+        <article class="card">
+          <h2>Active Directory &amp; Security Logging Homelab</h2>
+          <div class="meta">Personal project · Infrastructure and logging setup</div>
+          <p>Built a five-VM Proxmox lab with Active Directory, a domain-joined workstation, Ubuntu services and Wazuh. Configured auditing and verified event collection; detection exercises are next.</p>
+          <div class="tags"><span class="tag">Proxmox</span><span class="tag">Active Directory</span><span class="tag">Wazuh / Sysmon</span></div>
+          <div class="btn-row"><a class="btn" href="/homelab/">Explore the homelab</a></div>
+        </article>
+        <article class="card">
+          <h2>Local NAS Backups &amp; Camera Installation</h2>
+          <div class="meta">Small-business hardware and support</div>
+          <p>Set up NAS storage for manual file backups from two office computers and installed a separate DVR-based camera system.</p>
+          <div class="tags"><span class="tag">NAS</span><span class="tag">Ethernet</span><span class="tag">DVR cameras</span></div>
+          <div class="btn-row"><a class="btn" href="/camera-nas/">Read the NAS and camera case study</a></div>
+        </article>
       </div>
     </div>
   </main>
 
-  <footer class="site-footer">© 2025 Layne Fester</footer>
+  <footer class="site-footer">© 2026 Layne Fester</footer>
 </body>
 </html>

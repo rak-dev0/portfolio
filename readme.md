@@ -1,19 +1,31 @@
 # Portfolio
 
-Personal portfolio website for my projects + resume.
+Personal static HTML portfolio for Layne Fester's business IT work and learning projects.
 
-Live site: https://laynefester.me
+Live domain: https://www.laynefester.me
 
-## What’s inside
+## Pages
 
-A simple web portfolio
+- `/` — introduction and internship interests
+- `/projects/` — project hub
+- `/ehlert-recovery/` — email migration and website recovery
+- `/homelab/` — Active Directory and security logging lab
+- `/camera-nas/` — manual NAS backups and camera installation
+- `/resume/` — public Experience overview; URL retained for existing links
+- `/contact/` — university email, LinkedIn and GitHub
 
-- `index` — home
-- `projects` — project hub
-- `camera-nas` — write-up
-- `ehlert-recovery` — write-up
-- `resume` — resume page
-- `contact` — contact links
+## Local preview
+
+From the site root, run `python -m http.server 8765 --bind 127.0.0.1` and open
+http://127.0.0.1:8765. No build step or package installation is required.
+Use a local server rather than opening the HTML files directly; links use site-root paths.
+
+## Public content
+
+The application résumé is private and is not stored in this repository.
+The lab diagram is conceptual and contains no private addresses or account names.
+The homepage portrait is served from `assets/layne-fester-portrait.png`; the `CNAME` domain configuration is retained.
 
 ## License
+
 No license / personal project.
