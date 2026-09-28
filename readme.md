@@ -1,6 +1,6 @@
 # Portfolio
 
-Static HTML portfolio for Layne Fester: small-business IT work and a personal security logging lab.
+Static HTML portfolio site
 
 Live site: https://www.laynefester.me
 
@@ -44,11 +44,3 @@ add these response headers with a Transform Rule:
 - `Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()`
 
 Then the CSP `<meta>` tag can be removed (the header version also covers `frame-ancestors`).
-
-## Local preview
-
-From the site root run `python -m http.server 8765` and open http://127.0.0.1:8765.
-Links use root paths (`/projects/`), so opening the files directly won't work.
-When editing, keep styles in `assets/site.css`; inline `style=` attributes and `<script>` are blocked by the CSP.
-
-`assets/Layne-Fester-Resume.pdf` is the public web copy of the résumé (no phone number, UWM email).
