@@ -1,241 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Active Directory and Security Logging Homelab - Layne Fester</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Active Directory &amp; Security Logging Homelab | Layne Fester</title>
+  <meta name="description" content="A five-VM Proxmox lab with Active Directory, Group Policy auditing, Sysmon, PowerShell logging, and Wazuh event collection.">
+  <link rel="canonical" href="https://www.laynefester.me/homelab/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Layne Fester">
+  <meta property="og:title" content="Active Directory &amp; Security Logging Homelab | Layne Fester">
+  <meta property="og:description" content="A five-VM Proxmox lab with Active Directory, Group Policy auditing, Sysmon, PowerShell logging, and Wazuh event collection.">
+  <meta property="og:url" content="https://www.laynefester.me/homelab/">
+  <meta property="og:image" content="https://www.laynefester.me/assets/layne-fester-portrait.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="/tabicon.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A personal five-VM Proxmox lab with Active Directory, Group Policy, Windows auditing, Sysmon and Wazuh event collection." />
-  <style>
-    html, body { margin: 0; padding: 0; }
-    html { box-sizing: border-box; }
-    *, *::before, *::after { box-sizing: inherit; }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-      background: #f5fbff;
-      color: #0f172a;
-    }
-
-    main { flex: 1; }
-    a { text-decoration: none; }
-
-    .site-header {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-
-    .site-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #1e3a8a;
-    }
-
-    .site-nav { display: flex; gap: 16px; }
-
-    .nav-link {
-      font-size: 14px;
-      font-weight: 500;
-      color: #475569;
-      padding-bottom: 4px;
-      border-bottom: 2px solid transparent;
-    }
-
-    .nav-link:hover { color: #1e3a8a; }
-
-    .nav-link.active {
-      color: #1e3a8a;
-      border-bottom-color: #3b82f6;
-    }
-
-    .site-footer {
-      text-align: center;
-      padding: 24px 16px 32px;
-      font-size: 13px;
-      color: #64748b;
-      border-top: 1px solid #e2e8f0;
-      background: #ffffff;
-      margin-top: 40px;
-    }
-
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 56px 20px;
-    }
-
-    h1 {
-      margin: 0 0 8px 0;
-      font-size: 40px;
-      font-weight: 700;
-      color: #1e3a8a;
-      line-height: 1.15;
-    }
-
-    .subtitle {
-      margin: 0 0 18px 0;
-      color: #475569;
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .role-line {
-      margin: 0 0 6px 0;
-      font-size: 14px;
-      color: #1e40af;
-      font-weight: 600;
-    }
-
-    h2 {
-      margin: 30px 0 10px 0;
-      font-size: 18px;
-      font-weight: 700;
-      color: #1e40af;
-    }
-
-    h3 {
-      margin: 18px 0 8px 0;
-      font-size: 15px;
-      font-weight: 700;
-      color: #1e40af;
-    }
-
-    p {
-      margin: 0 0 14px 0;
-      color: #475569;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    ul {
-      margin: 8px 0 14px 0;
-      padding-left: 18px;
-      color: #475569;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #e2e8f0;
-      margin: 22px 0;
-    }
-
-    .tags { display:flex; flex-wrap:wrap; gap:8px; margin: 14px 0 4px 0; }
-    .tag {
-      font-size:12px;
-      color:#1e40af;
-      padding:4px 10px;
-      border-radius:999px;
-      background:#eef2ff;
-      border:1px solid #e2e8f0;
-    }
-
-    .topbar {
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin: 16px 0 18px;
-    }
-    .btn {
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:10px;
-      background: linear-gradient(135deg,#1e3a8a,#3b82f6);
-      color:#fff;
-      font-weight:700;
-      font-size:14px;
-    }
-    .btn.secondary { background:#fff; color:#1e40af; border:1px solid #cbd5e1; }
-    .btn.secondary:hover { border-color:#3b82f6; }
-
-    @media (max-width: 520px) {
-      .site-header { padding: 12px 14px; flex-direction: row; align-items: center; gap: 12px; }
-      .site-title { font-size: 16px; }
-      .site-nav {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        gap: 12px;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-      .nav-link { font-size:13px; padding-bottom:2px; }
-      h1 { font-size: 30px; }
-    }
-
-    /* Keep the existing layout usable with the longer Experience label. */
-    *, *::before, *::after { box-sizing: border-box; }
-    a:focus-visible { outline: 3px solid #1e40af; outline-offset: 4px; }
-    .text-link { color: #1e40af; text-decoration: underline; text-underline-offset: 3px; }
-    .lab-figure { margin: 24px 0; }
-    .lab-figure img { display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
-    .lab-figure figcaption { font-size: 13px; line-height: 1.6; color: #475569; margin-top: 8px; }
-    .component-list dt { color: #1e40af; font-weight: 600; margin-top: 14px; }
-    .component-list dd { margin: 4px 0 0; color: #475569; line-height: 1.7; }
-    .contact-header h1 { font-size: 36px; color: #1e3a8a; margin: 0 0 16px; }
-    .contact-link { overflow-wrap: anywhere; }
-    @media (max-width: 520px) {
-      .site-header { flex-wrap: wrap; gap: 10px; }
-      .site-nav { flex: 1 0 100%; justify-content: flex-start; gap: 18px; overflow-x: visible; }
-      .item-header { flex-wrap: wrap; }
-      .contact-header h1 { font-size: 30px; }
-    }
-
-  </style>
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
-
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <div class="site-title">Portfolio</div>
-    <nav class="site-nav" aria-label="Main navigation">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/projects/" class="nav-link">Projects</a>
-      <a href="/resume/" class="nav-link">Experience</a>
-      <a href="/contact/" class="nav-link">Contact</a>
-    </nav>
+    <div class="container">
+      <a class="site-name" href="/">Layne Fester</a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/projects/" aria-current="page">Projects</a>
+        <a class="nav-link" href="/resume/">Résumé</a>
+        <a class="nav-link" href="/contact/">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-<div class="wrap">
-      <p class="role-line">Personal project · Setup documented June 2026</p>
-      <h1>Active Directory &amp; Security Logging Homelab</h1>
-      <p class="subtitle">A hands-on foundation for learning Windows and Linux administration and centralized security logging.</p>
-      <div class="topbar"><a class="btn secondary" href="/projects/">← Back to Projects</a></div>
+  <main id="main">
+    <article class="container container--narrow article">
+      <header class="page-head">
+        <a class="back-link" href="/projects/">&larr; All projects</a>
+        <p class="eyebrow">Personal project</p>
+        <h1>Active Directory &amp; Security Logging Homelab</h1>
+        <p class="lede">A home lab I built to practice Windows and Linux administration and centralized security logging.</p>
+        <dl class="glance">
+          <div><dt>Built</dt><dd>June 2026</dd></div>
+          <div><dt>Platform</dt><dd>Proxmox, five VMs</dd></div>
+          <div><dt>Tools</dt><dd>Active Directory, Group Policy, Sysmon, Wazuh, Pi-hole</dd></div>
+        </dl>
+      </header>
+
       <h2>What I built</h2>
-      <p>Five virtual machines run on one Proxmox host. The lab combines an Active Directory domain, a Windows workstation, Ubuntu services and Wazuh, with a Kali VM prepared for future practice.</p>
-      <figure class="lab-figure">
-        <img src="/assets/homelab-overview.svg" width="1120" height="650" alt="Five virtual machines on one Proxmox host: Windows workstation, Active Directory domain controller, Ubuntu DNS host, Wazuh server and Kali practice VM. Windows and Ubuntu agents send events to Wazuh.">
-        <figcaption>Conceptual overview of the documented setup, not a live status display. <a class="text-link" href="/assets/homelab-overview.svg">Open the full-size diagram</a>.</figcaption>
+      <p>Five virtual machines run on a single Proxmox host: an Active Directory domain controller, a domain-joined Windows 11 workstation, an Ubuntu DNS server, a Wazuh server, and a Kali Linux VM.</p>
+      <figure class="figure">
+        <img src="/assets/homelab-overview.svg" width="1120" height="650" alt="Diagram of five VMs on one Proxmox host. The Windows workstation uses the domain controller for DNS, which forwards to Pi-hole on the Ubuntu DNS host. The workstation, domain controller, and Ubuntu DNS host send agent data to the Wazuh server. Kali sits alongside for practice.">
+        <figcaption>Lab layout (no IP addresses or account names). <a href="/assets/homelab-overview.svg" target="_blank" rel="noopener noreferrer">Open full size</a></figcaption>
       </figure>
       <dl class="component-list">
-        <dt>Windows Server</dt><dd>Active Directory Domain Services and DNS, with organizational units, users and groups.</dd>
-        <dt>Windows 11</dt><dd>A domain-joined workstation with an audit baseline applied through Group Policy.</dd>
+        <dt>Windows Server</dt><dd>Active Directory Domain Services and DNS, with organizational units, users, and groups.</dd>
+        <dt>Windows 11</dt><dd>Domain-joined workstation with an audit baseline applied through Group Policy.</dd>
         <dt>Ubuntu DNS host</dt><dd>Pi-hole DNS filtering and a Wazuh agent.</dd>
-        <dt>Ubuntu Wazuh host</dt><dd>Wazuh server, indexer and dashboard for centralized event collection.</dd>
-        <dt>Kali Linux</dt><dd>A practice VM prepared for future exercises against my own lab systems.</dd>
+        <dt>Ubuntu Wazuh host</dt><dd>Wazuh server, indexer, and dashboard for collecting events in one place.</dd>
+        <dt>Kali Linux</dt><dd>Set up for running test attacks against my own lab systems.</dd>
       </dl>
-      <h2>Administration and logging</h2>
-      <p>The domain controller handles domain DNS queries and forwards external requests to Pi-hole. Conditional forwarding sends domain lookups from the DNS filter back to the domain controller.</p>
-      <p>I configured Windows auditing, command-line process-creation events, PowerShell logging and Sysmon. A Group Policy linked to the workstation organizational unit applies the workstation audit settings; the domain controller has separately configured auditing.</p>
-      <h2>What I checked during setup</h2>
-      <p>My build notes record successful collection of Windows Security, Sysmon and PowerShell events in Wazuh. Agents were enrolled on the domain controller, Windows workstation and Ubuntu DNS host. The Wazuh manager also monitors itself.</p>
-      <p>I worked through DNS selection that prevented the workstation from joining the domain and a Linux storage-allocation issue that interrupted the Wazuh installation.</p>
-      <h2>Next steps</h2>
-      <p>The completed work is infrastructure and logging setup. Documented detection exercises and alert tuning are next: generate a known test event in the lab, trace its logs and explain what the monitoring shows. Network segmentation and VPN access are future additions.</p>
-    </div>
+
+      <h2>DNS</h2>
+      <p>The domain controller answers DNS for the domain and forwards everything else to Pi-hole. Pi-hole uses conditional forwarding to send lookups for the domain back to the domain controller.</p>
+
+      <h2>Logging</h2>
+      <p>I turned on Windows audit policies, process-creation events with command lines, PowerShell logging, and Sysmon. A Group Policy linked to the workstation OU applies the audit settings to the workstation, and the domain controller's auditing is configured separately.</p>
+      <p>Wazuh agents run on the domain controller, the workstation, and the Ubuntu DNS host, and the Wazuh manager monitors itself. I confirmed that Windows Security, Sysmon, and PowerShell events were showing up in Wazuh.</p>
+
+      <h2>Problems I ran into</h2>
+      <ul>
+        <li>The workstation couldn't join the domain until I fixed which DNS server it was using.</li>
+        <li>The Wazuh install stopped partway through because of a storage allocation problem on the Ubuntu VM, which I had to fix before it would finish.</li>
+      </ul>
+
+      <h2>What's next</h2>
+      <p>Detection exercises: trigger a known event in the lab, follow it through the logs, and tune alerts based on what I find. After that, network segmentation and VPN access.</p>
+    </article>
   </main>
 
-  <footer class="site-footer">© 2026 Layne Fester</footer>
+  <footer class="site-footer">
+    <div class="container">
+      <span>&copy; 2026 Layne Fester</span>
+      <nav aria-label="Elsewhere">
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#100;&#102;&#101;&#115;&#116;&#101;&#114;&#64;&#117;&#119;&#109;&#46;&#101;&#100;&#117;">Email</a>
+        <a href="https://www.linkedin.com/in/layne-fester/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/rak-dev0" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

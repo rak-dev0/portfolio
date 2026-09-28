@@ -1,326 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>IT and Cybersecurity Portfolio - Layne Fester</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Layne Fester | IT and Cybersecurity</title>
+  <meta name="description" content="Layne Fester is a UW–Milwaukee Computer Science student and CompTIA Security+ holder who runs IT for a small welding business. Seeking a Summer 2027 IT or cybersecurity internship.">
+  <link rel="canonical" href="https://www.laynefester.me/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Layne Fester">
+  <meta property="og:title" content="Layne Fester | IT and Cybersecurity">
+  <meta property="og:description" content="Layne Fester is a UW–Milwaukee Computer Science student and CompTIA Security+ holder who runs IT for a small welding business. Seeking a Summer 2027 IT or cybersecurity internship.">
+  <meta property="og:url" content="https://www.laynefester.me/">
+  <meta property="og:image" content="https://www.laynefester.me/assets/layne-fester-portrait.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="/tabicon.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Layne Fester, UW-Milwaukee Computer Science student and Security+ holder with small-business IT experience, seeking Summer 2027 internships." />
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Make footer stick to bottom */
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-      background: #f5fbff;
-      color: #0f172a;
-    }
-
-    main {
-      flex: 1;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    /* Header / Nav */
-    .site-header {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-	  transition: transform 0.25s ease-out;
-    }
-
-    .site-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #1e3a8a;
-    }
-
-    .site-nav {
-      display: flex;
-      gap: 16px;
-    }
-
-    .nav-link {
-      font-size: 14px;
-      font-weight: 500;
-      color: #475569;
-      padding-bottom: 4px;
-      border-bottom: 2px solid transparent;
-    }
-
-    .nav-link:hover {
-      color: #1e3a8a;
-    }
-
-    .nav-link.active {
-      color: #1e3a8a;
-      border-bottom-color: #3b82f6;
-    }
-
-    /* Footer */
-    .site-footer {
-      text-align: center;
-      padding: 24px 16px 32px;
-      font-size: 13px;
-      color: #64748b;
-      border-top: 1px solid #e2e8f0;
-      background: #ffffff;
-      margin-top: 40px;
-    }
-
-    /* Hero styles */
-    .hero-container {
-      background: #f5fbff;
-      min-height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
-      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    }
-
-    .hero-content {
-      max-width: 1100px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .hero-text {
-      padding-right: 20px;
-    }
-
-    .hero-text h1 {
-      font-size: 48px;
-      font-weight: 700;
-      color: #1e3a8a;
-      margin: 0 0 12px 0;
-      line-height: 1.2;
-    }
-
-    .hero-subtitle {
-      font-size: 18px;
-      color: #3b82f6;
-      margin: 0 0 20px 0;
-      font-weight: 500;
-    }
-
-    .hero-subtitle .dot {
-      color: #94a3b8;
-      margin: 0 8px;
-    }
-
-    .hero-description {
-      font-size: 16px;
-      color: #475569;
-      line-height: 1.7;
-      margin: 0 0 32px 0;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-
-    .btn {
-      padding: 12px 28px;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-      color: white;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: #1e40af;
-      border: 2px solid #3b82f6;
-    }
-
-    .btn-secondary:hover {
-      background: #eff6ff;
-      transform: translateY(-2px);
-    }
-
-    .hero-image {
-      position: relative;
-    }
-
-    .hero-image img {
-      width: 100%;
-      max-width: 450px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
-      display: block;
-      margin: 0 auto;
-    }
-
-    .hero-badge {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-      font-size: 14px;
-      font-weight: 600;
-      color: #1e40af;
-    }
-
-    @media (max-width: 768px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-      }
-
-      .hero-text {
-        padding-right: 0;
-      }
-
-      .hero-text h1 {
-        font-size: 36px;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .hero-badge {
-        position: static;
-        display: inline-block;
-        margin-top: 16px;
-      }
-    }
-
-	/* Mobile nav: single line, no wrap, no visible scrollbar */
-	@media (max-width: 520px) {
-	  .site-header {
-		padding: 12px 14px;
-		flex-direction: row;         /* keep one line */
-		align-items: center;
-		gap: 12px;
-	  }
-
-	  .site-title {
-		font-size: 16px;
-		flex: 0 0 auto;
-	  }
-
-	  .site-nav {
-		flex: 1;
-		display: flex;
-		justify-content: flex-end;
-		gap: 12px;
-
-		flex-wrap: nowrap;           /* no wrapping */
-		overflow-x: auto;            /* allows swipe if needed */
-		white-space: nowrap;
-		-webkit-overflow-scrolling: touch;
-
-		scrollbar-width: none;       /* Firefox hide scrollbar */
-	  }
-
-	  .site-nav::-webkit-scrollbar {
-		display: none;               /* Chrome/Safari hide scrollbar */
-	  }
-
-	  .nav-link {
-		font-size: 13px;
-		padding-bottom: 2px;
-		flex: 0 0 auto;
-	  }
-	}
-
-
-    /* Keep the existing layout usable with the longer Experience label. */
-    *, *::before, *::after { box-sizing: border-box; }
-    a:focus-visible { outline: 3px solid #1e40af; outline-offset: 4px; }
-    .text-link { color: #1e40af; text-decoration: underline; text-underline-offset: 3px; }
-    .lab-figure { margin: 24px 0; }
-    .lab-figure img { display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
-    .lab-figure figcaption { font-size: 13px; line-height: 1.6; color: #475569; margin-top: 8px; }
-    .component-list dt { color: #1e40af; font-weight: 600; margin-top: 14px; }
-    .component-list dd { margin: 4px 0 0; color: #475569; line-height: 1.7; }
-    .contact-header h1 { font-size: 36px; color: #1e3a8a; margin: 0 0 16px; }
-    .contact-link { overflow-wrap: anywhere; }
-    @media (max-width: 520px) {
-      .site-header { flex-wrap: wrap; gap: 10px; }
-      .site-nav { flex: 1 0 100%; justify-content: flex-start; gap: 18px; overflow-x: visible; }
-      .item-header { flex-wrap: wrap; }
-      .contact-header h1 { font-size: 30px; }
-    }
-
-  </style>
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <div class="site-title">Portfolio</div>
-	<nav class="site-nav" aria-label="Main navigation">
-	  <a href="/" class="nav-link active" aria-current="page">Home</a>
-	  <a href="/projects/" class="nav-link">Projects</a>
-	  <a href="/resume/" class="nav-link">Experience</a>
-	  <a href="/contact/" class="nav-link">Contact</a>
-	</nav>
+    <div class="container">
+      <a class="site-name" href="/">Layne Fester</a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="nav-link" href="/" aria-current="page">Home</a>
+        <a class="nav-link" href="/projects/">Projects</a>
+        <a class="nav-link" href="/resume/">Résumé</a>
+        <a class="nav-link" href="/contact/">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-<div class="hero-container">
-      <div class="hero-content">
-        <div class="hero-text">
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <div>
           <h1>Layne Fester</h1>
-          <p class="hero-subtitle">Computer Science at UW-Milwaukee <span class="dot">●</span> CompTIA Security+</p>
-          <p class="hero-description">I handle IT for a five-person welding business, from Microsoft 365 and email to DNS, web hosting, and computer and printer support. In my personal lab, I practice Active Directory administration and security logging.</p>
-          <p class="hero-description">I graduate in May 2029 and am seeking a <strong>Summer 2027 IT or cybersecurity internship</strong>.</p>
-          <div class="hero-buttons">
-            <a href="/projects/" class="btn btn-primary">View Projects</a>
-            <a href="/contact/" class="btn btn-secondary">Get in Touch</a>
+          <p class="subtitle"><span>Computer Science at UW–Milwaukee</span><span class="sep" aria-hidden="true"> &middot; </span><span>CompTIA Security+</span></p>
+          <p>I'm the IT administrator for Ehlert Welding, a five-person welding company in Byron, WI. I take care of Microsoft 365, email, DNS, the company website, and whatever goes wrong with the computers and printers.</p>
+          <p>At home I run a Proxmox lab where I practice Active Directory administration and security logging.</p>
+          <p>I graduate in May 2029 and I'm looking for a <strong>Summer 2027 IT or cybersecurity internship</strong>.</p>
+          <div class="btn-row">
+            <a class="btn" href="/projects/">See my projects</a>
+            <a class="btn btn--secondary" href="/resume/">View résumé</a>
           </div>
         </div>
-        <div class="hero-image">
-          <img src="/assets/layne-fester-portrait.png" alt="Layne Fester">
-          <div class="hero-badge">🎓 Class of 2029</div>
-        </div>
+        <picture class="hero-photo">
+          <source srcset="/assets/layne-fester-portrait.webp" type="image/webp">
+          <img src="/assets/layne-fester-portrait.jpg" width="800" height="794" alt="Portrait of Layne Fester">
+        </picture>
       </div>
-    </div>
+    </section>
+
+    <section class="container" aria-label="Highlights">
+      <ul class="highlights">
+        <li><strong>Microsoft 365 migration</strong><span>Moved a small business's email to Exchange Online after an outage and set up SPF, DKIM, DMARC, and MFA.</span></li>
+        <li><strong>Security logging lab</strong><span>Active Directory, Sysmon, and Wazuh running across five VMs on Proxmox.</span></li>
+        <li class="highlight-badge">
+          <picture>
+            <source srcset="/assets/security-plus-badge.webp" type="image/webp">
+            <img src="/assets/security-plus-badge.png" width="72" height="72" alt="CompTIA Security+ certified badge">
+          </picture>
+          <div><strong>CompTIA Security+</strong><span>SY0-701, earned January 2026.</span><a class="verify-link" href="https://www.credly.com/badges/3c19a460-5602-424e-b7bb-fce5c89a411a/public_url" target="_blank" rel="noopener noreferrer">Verify on Credly</a></div>
+        </li>
+      </ul>
+    </section>
   </main>
 
   <footer class="site-footer">
-    © 2026 Layne Fester
+    <div class="container">
+      <span>&copy; 2026 Layne Fester</span>
+      <nav aria-label="Elsewhere">
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#100;&#102;&#101;&#115;&#116;&#101;&#114;&#64;&#117;&#119;&#109;&#46;&#101;&#100;&#117;">Email</a>
+        <a href="https://www.linkedin.com/in/layne-fester/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/rak-dev0" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

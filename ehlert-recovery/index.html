@@ -1,235 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Email Migration and Website Recovery - Layne Fester</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Email Migration &amp; Website Recovery | Layne Fester</title>
+  <meta name="description" content="How Layne Fester restored a small business&#x27;s email and website after a hosting outage: Microsoft 365, Cloudflare DNS, SPF, DKIM, DMARC, and MFA.">
+  <link rel="canonical" href="https://www.laynefester.me/ehlert-recovery/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Layne Fester">
+  <meta property="og:title" content="Email Migration &amp; Website Recovery | Layne Fester">
+  <meta property="og:description" content="How Layne Fester restored a small business&#x27;s email and website after a hosting outage: Microsoft 365, Cloudflare DNS, SPF, DKIM, DMARC, and MFA.">
+  <meta property="og:url" content="https://www.laynefester.me/ehlert-recovery/">
+  <meta property="og:image" content="https://www.laynefester.me/assets/layne-fester-portrait.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="/tabicon.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="How Layne Fester restored a small business's email and website with Microsoft 365, DNS changes, email authentication and MFA." />
-  <style>
-    html, body { margin: 0; padding: 0; }
-    html { box-sizing: border-box; }
-    *, *::before, *::after { box-sizing: inherit; }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-      background: #f5fbff;
-      color: #0f172a;
-    }
-
-    main { flex: 1; }
-    a { text-decoration: none; }
-
-    .site-header {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-
-    .site-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #1e3a8a;
-    }
-
-    .site-nav { display: flex; gap: 16px; }
-
-    .nav-link {
-      font-size: 14px;
-      font-weight: 500;
-      color: #475569;
-      padding-bottom: 4px;
-      border-bottom: 2px solid transparent;
-    }
-
-    .nav-link:hover { color: #1e3a8a; }
-
-    .nav-link.active {
-      color: #1e3a8a;
-      border-bottom-color: #3b82f6;
-    }
-
-    .site-footer {
-      text-align: center;
-      padding: 24px 16px 32px;
-      font-size: 13px;
-      color: #64748b;
-      border-top: 1px solid #e2e8f0;
-      background: #ffffff;
-      margin-top: 40px;
-    }
-
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 56px 20px;
-    }
-
-    h1 {
-      margin: 0 0 8px 0;
-      font-size: 40px;
-      font-weight: 700;
-      color: #1e3a8a;
-      line-height: 1.15;
-    }
-
-    .subtitle {
-      margin: 0 0 18px 0;
-      color: #475569;
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .role-line {
-      margin: 0 0 6px 0;
-      font-size: 14px;
-      color: #1e40af;
-      font-weight: 600;
-    }
-
-    h2 {
-      margin: 30px 0 10px 0;
-      font-size: 18px;
-      font-weight: 700;
-      color: #1e40af;
-    }
-
-    h3 {
-      margin: 18px 0 8px 0;
-      font-size: 15px;
-      font-weight: 700;
-      color: #1e40af;
-    }
-
-    p {
-      margin: 0 0 14px 0;
-      color: #475569;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    ul {
-      margin: 8px 0 14px 0;
-      padding-left: 18px;
-      color: #475569;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #e2e8f0;
-      margin: 22px 0;
-    }
-
-    .tags { display:flex; flex-wrap:wrap; gap:8px; margin: 14px 0 4px 0; }
-    .tag {
-      font-size:12px;
-      color:#1e40af;
-      padding:4px 10px;
-      border-radius:999px;
-      background:#eef2ff;
-      border:1px solid #e2e8f0;
-    }
-
-    .topbar {
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin: 16px 0 18px;
-    }
-    .btn {
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:10px;
-      background: linear-gradient(135deg,#1e3a8a,#3b82f6);
-      color:#fff;
-      font-weight:700;
-      font-size:14px;
-    }
-    .btn.secondary { background:#fff; color:#1e40af; border:1px solid #cbd5e1; }
-    .btn.secondary:hover { border-color:#3b82f6; }
-
-    @media (max-width: 520px) {
-      .site-header { padding: 12px 14px; flex-direction: row; align-items: center; gap: 12px; }
-      .site-title { font-size: 16px; }
-      .site-nav {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        gap: 12px;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-      .nav-link { font-size:13px; padding-bottom:2px; }
-      h1 { font-size: 30px; }
-    }
-
-    /* Keep the existing layout usable with the longer Experience label. */
-    *, *::before, *::after { box-sizing: border-box; }
-    a:focus-visible { outline: 3px solid #1e40af; outline-offset: 4px; }
-    .text-link { color: #1e40af; text-decoration: underline; text-underline-offset: 3px; }
-    .lab-figure { margin: 24px 0; }
-    .lab-figure img { display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
-    .lab-figure figcaption { font-size: 13px; line-height: 1.6; color: #475569; margin-top: 8px; }
-    .component-list dt { color: #1e40af; font-weight: 600; margin-top: 14px; }
-    .component-list dd { margin: 4px 0 0; color: #475569; line-height: 1.7; }
-    .contact-header h1 { font-size: 36px; color: #1e3a8a; margin: 0 0 16px; }
-    .contact-link { overflow-wrap: anywhere; }
-    @media (max-width: 520px) {
-      .site-header { flex-wrap: wrap; gap: 10px; }
-      .site-nav { flex: 1 0 100%; justify-content: flex-start; gap: 18px; overflow-x: visible; }
-      .item-header { flex-wrap: wrap; }
-      .contact-header h1 { font-size: 30px; }
-    }
-
-  </style>
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
-
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <div class="site-title">Portfolio</div>
-    <nav class="site-nav" aria-label="Main navigation">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/projects/" class="nav-link active" aria-current="page">Projects</a>
-      <a href="/resume/" class="nav-link">Experience</a>
-      <a href="/contact/" class="nav-link">Contact</a>
-    </nav>
+    <div class="container">
+      <a class="site-name" href="/">Layne Fester</a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/projects/" aria-current="page">Projects</a>
+        <a class="nav-link" href="/resume/">Résumé</a>
+        <a class="nav-link" href="/contact/">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-<div class="wrap">
-      <p class="role-line">IT Administrator · Ehlert Welding Co., Inc. · June 2026 project</p>
-      <h1>Small Business Email Migration &amp; Website Recovery</h1>
-      <p class="subtitle">Restoring working services for a five-person welding business after a legacy hosting outage.</p>
-      <div class="tags"><span class="tag">Microsoft 365</span><span class="tag">Exchange Online</span><span class="tag">Cloudflare / DNS</span><span class="tag">SPF / DKIM / DMARC</span><span class="tag">MFA</span></div>
-      <div class="topbar"><a class="btn secondary" href="/projects/">← Back to Projects</a></div>
+  <main id="main">
+    <article class="container container--narrow article">
+      <header class="page-head">
+        <a class="back-link" href="/projects/">&larr; All projects</a>
+        <p class="eyebrow">Case study</p>
+        <h1>Email Migration &amp; Website Recovery</h1>
+        <p class="lede">Getting email and the website back online for a five-person welding business after its hosting provider went down.</p>
+        <dl class="glance">
+          <div><dt>Role</dt><dd>IT Administrator, Ehlert Welding Co., Inc.</dd></div>
+          <div><dt>When</dt><dd>June 2026</dd></div>
+          <div><dt>Tools</dt><dd>Microsoft 365, Exchange Online, Cloudflare, SPF, DKIM, DMARC, MFA</dd></div>
+        </dl>
+      </header>
+
       <h2>The problem</h2>
-      <p>The company's legacy hosting environment failed, affecting both email and the public website. As the person handling IT, I worked to restore those services and take over their ongoing administration.</p>
+      <p>The company's legacy hosting provider had an outage that took down both email and the public website. I was already handling the company's IT, so it was on me to get both working again and keep them running afterward.</p>
+
       <h2>What I did</h2>
       <ul>
-        <li>Migrated business email to Microsoft 365 and Exchange Online while retaining the company's email addresses.</li>
-        <li>Configured SPF, DKIM and DMARC email authentication and enabled multi-factor authentication.</li>
-        <li>Moved DNS management to Cloudflare and configured the website and email records.</li>
-        <li>Rebuilt and deployed the website with updated company information and a responsive layout.</li>
-        <li>Managed domain registration, hosting and HTTPS, and continued supporting users after the migration.</li>
+        <li>Migrated business email to Microsoft 365 and Exchange Online, keeping everyone's existing email addresses.</li>
+        <li>Set up SPF, DKIM, and DMARC email authentication and turned on multi-factor authentication.</li>
+        <li>Moved DNS management to Cloudflare and configured the records for the website and email.</li>
+        <li>Rebuilt and deployed the company website with updated information and a layout that works on phones.</li>
+        <li>Took over domain registration, hosting, and HTTPS, and helped staff with issues after the switch.</li>
       </ul>
+
       <h2>Outcome</h2>
-      <p>The business had working email and website services again. I continue to administer the services and help with day-to-day IT issues, including remote support while attending college.</p>
+      <p>Email and the website are working again, and I still manage both. I also handle day-to-day IT for the office, remotely when I'm at school.</p>
+
       <h2>What I learned</h2>
-      <p>This project connected DNS, email authentication, account configuration and user support. It showed me why a business needs clear ownership of its domain and service accounts, and why a migration needs to work for the people who use the systems.</p>
-    </div>
+      <p>Email delivery, the website, and HTTPS all depend on the same set of DNS records, so one mistake shows up everywhere. I also saw why a small business needs to hold the logins for its own domain and services, and that a migration isn't finished until the people using email every day can work normally.</p>
+    </article>
   </main>
 
-  <footer class="site-footer">© 2026 Layne Fester</footer>
+  <footer class="site-footer">
+    <div class="container">
+      <span>&copy; 2026 Layne Fester</span>
+      <nav aria-label="Elsewhere">
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#100;&#102;&#101;&#115;&#116;&#101;&#114;&#64;&#117;&#119;&#109;&#46;&#101;&#100;&#117;">Email</a>
+        <a href="https://www.linkedin.com/in/layne-fester/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/rak-dev0" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,4 @@
+Contact: mailto:ldfester@uwm.edu
+Expires: 2027-09-28T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.laynefester.me/.well-known/security.txt

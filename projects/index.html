@@ -1,188 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Projects - Layne Fester</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Projects | Layne Fester</title>
+  <meta name="description" content="Email migration and website recovery, an Active Directory and Wazuh homelab, and NAS backup and camera work by Layne Fester.">
+  <link rel="canonical" href="https://www.laynefester.me/projects/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Layne Fester">
+  <meta property="og:title" content="Projects | Layne Fester">
+  <meta property="og:description" content="Email migration and website recovery, an Active Directory and Wazuh homelab, and NAS backup and camera work by Layne Fester.">
+  <meta property="og:url" content="https://www.laynefester.me/projects/">
+  <meta property="og:image" content="https://www.laynefester.me/assets/layne-fester-portrait.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="/tabicon.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Small-business email migration, Active Directory and Wazuh lab setup, and local NAS and camera projects by Layne Fester." />
-  <style>
-    html, body { margin:0; padding:0; }
-    html { box-sizing: border-box; }
-    *, *::before, *::after { box-sizing: inherit; }
-
-    body{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
-      background:#f5fbff;
-      color:#0f172a;
-    }
-    main{ flex:1; }
-    a{ text-decoration:none; }
-
-    .site-header{
-      background:#fff;
-      border-bottom:1px solid #e2e8f0;
-      padding:14px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      position:sticky;
-      top:0;
-      z-index:20;
-    }
-    .site-title{ font-size:20px; font-weight:700; color:#1e3a8a; }
-    .site-nav{ display:flex; gap:16px; }
-    .nav-link{
-      font-size:14px;
-      font-weight:500;
-      color:#475569;
-      padding-bottom:4px;
-      border-bottom:2px solid transparent;
-    }
-    .nav-link:hover{ color:#1e3a8a; }
-    .nav-link.active{ color:#1e3a8a; border-bottom-color:#3b82f6; }
-
-    .site-footer{
-      text-align:center;
-      padding:24px 16px 32px;
-      font-size:13px;
-      color:#64748b;
-      border-top:1px solid #e2e8f0;
-      background:#fff;
-      margin-top:40px;
-    }
-
-    .wrap{ max-width: 980px; margin: 0 auto; padding: 48px 20px; }
-    h1{ margin:0 0 10px 0; font-size:34px; color:#1e3a8a; }
-    p{ margin:0 0 22px 0; color:#475569; line-height:1.6; }
-
-    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; }
-    .card{
-      background:#fff;
-      border:1px solid #e2e8f0;
-      border-radius:14px;
-      padding:18px;
-      box-shadow: 0 6px 18px rgba(30,58,138,0.07);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(30,58,138,0.12);
-    }
-    .card h2{ margin:0 0 8px 0; font-size:18px; color:#1e40af; }
-    .meta{ font-size:13px; color:#64748b; margin-bottom:10px; }
-    .card p{ margin:0 0 12px 0; font-size:14px; color:#475569; }
-
-    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 14px 0; }
-    .tag{
-      font-size:12px;
-      color:#1e40af;
-      padding:4px 10px;
-      border-radius:999px;
-      background:#eef2ff;
-      border:1px solid #e2e8f0;
-    }
-
-    .btn-row{ display:flex; gap:10px; flex-wrap:wrap; }
-    .btn{
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:10px;
-      background: linear-gradient(135deg,#1e3a8a,#3b82f6);
-      color:#fff;
-      font-weight:700;
-      font-size:14px;
-    }
-    .btn.secondary{ background:#fff; color:#1e40af; border:1px solid #cbd5e1; }
-    .btn.secondary:hover{ border-color:#3b82f6; }
-
-    .featured-wrap{ margin-bottom:16px; }
-    .card.featured{
-      position: relative;
-      border-left: 4px solid #3b82f6;
-      padding-left: 16px;
-    }
-
-    @media (max-width: 520px) {
-      .site-header{ padding: 12px 14px; flex-direction: row; align-items: center; gap: 12px; }
-      .site-title{ font-size: 16px; }
-      .site-nav{
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        gap: 12px;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-      .nav-link{ font-size:13px; padding-bottom:2px; }
-    }
-
-    /* Keep the existing layout usable with the longer Experience label. */
-    *, *::before, *::after { box-sizing: border-box; }
-    a:focus-visible { outline: 3px solid #1e40af; outline-offset: 4px; }
-    .text-link { color: #1e40af; text-decoration: underline; text-underline-offset: 3px; }
-    .lab-figure { margin: 24px 0; }
-    .lab-figure img { display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
-    .lab-figure figcaption { font-size: 13px; line-height: 1.6; color: #475569; margin-top: 8px; }
-    .component-list dt { color: #1e40af; font-weight: 600; margin-top: 14px; }
-    .component-list dd { margin: 4px 0 0; color: #475569; line-height: 1.7; }
-    .contact-header h1 { font-size: 36px; color: #1e3a8a; margin: 0 0 16px; }
-    .contact-link { overflow-wrap: anywhere; }
-    @media (max-width: 520px) {
-      .site-header { flex-wrap: wrap; gap: 10px; }
-      .site-nav { flex: 1 0 100%; justify-content: flex-start; gap: 18px; overflow-x: visible; }
-      .item-header { flex-wrap: wrap; }
-      .contact-header h1 { font-size: 30px; }
-    }
-
-  </style>
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <div class="site-title">Portfolio</div>
-    <nav class="site-nav" aria-label="Main navigation">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/projects/" class="nav-link active" aria-current="page">Projects</a>
-      <a href="/resume/" class="nav-link">Experience</a>
-      <a href="/contact/" class="nav-link">Contact</a>
-    </nav>
+    <div class="container">
+      <a class="site-name" href="/">Layne Fester</a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/projects/" aria-current="page">Projects</a>
+        <a class="nav-link" href="/resume/">Résumé</a>
+        <a class="nav-link" href="/contact/">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-<div class="wrap">
-      <h1>Projects</h1>
-      <p>Practical IT work for a small business, alongside a personal lab for learning systems administration and security logging.</p>
-      <div class="featured-wrap">
-        <article class="card featured">
-          <h2>Small Business Email Migration &amp; Website Recovery</h2>
-          <div class="meta">IT Administrator · Ehlert Welding Co., Inc.</div>
-          <p>Restored email and website services after a legacy hosting outage. Migrated email to Microsoft 365, configured email authentication and MFA, moved DNS to Cloudflare, and rebuilt the website.</p>
-          <div class="tags"><span class="tag">Microsoft 365</span><span class="tag">Exchange Online</span><span class="tag">DNS / Cloudflare</span><span class="tag">SPF / DKIM / DMARC</span></div>
-          <div class="btn-row"><a class="btn" href="/ehlert-recovery/">Read the recovery case study</a></div>
+  <main id="main">
+    <div class="container">
+      <header class="page-head">
+        <h1>Projects</h1>
+        <p class="lede">Work I've done as IT administrator for a small business, plus a lab I built to learn Windows administration and security logging.</p>
+      </header>
+
+      <div class="card-grid">
+        <article class="card card--featured">
+          <h2>Email Migration &amp; Website Recovery</h2>
+          <p class="meta">IT Administrator &middot; Ehlert Welding Co., Inc.</p>
+          <p>The company's old host went down and took email and the website with it. I moved email to Microsoft 365, set up SPF, DKIM, DMARC, and MFA, moved DNS to Cloudflare, and rebuilt the website.</p>
+          <ul class="tags"><li class="tag">Microsoft 365</li><li class="tag">Exchange Online</li><li class="tag">Cloudflare DNS</li><li class="tag">SPF / DKIM / DMARC</li></ul>
+          <div class="btn-row"><a class="btn" href="/ehlert-recovery/">Read the case study</a></div>
         </article>
-      </div>
-      <div class="grid">
+
         <article class="card">
           <h2>Active Directory &amp; Security Logging Homelab</h2>
-          <div class="meta">Personal project · Infrastructure and logging setup</div>
-          <p>Built a five-VM Proxmox lab with Active Directory, a domain-joined workstation, Ubuntu services and Wazuh. Configured auditing and verified event collection; detection exercises are next.</p>
-          <div class="tags"><span class="tag">Proxmox</span><span class="tag">Active Directory</span><span class="tag">Wazuh / Sysmon</span></div>
-          <div class="btn-row"><a class="btn" href="/homelab/">Explore the homelab</a></div>
+          <p class="meta">Personal project</p>
+          <p>Five VMs on Proxmox: an Active Directory domain, a domain-joined Windows 11 workstation, Ubuntu services, Wazuh, and Kali. Windows auditing, Sysmon, and PowerShell logs all feed into Wazuh.</p>
+          <ul class="tags"><li class="tag">Proxmox</li><li class="tag">Active Directory</li><li class="tag">Group Policy</li><li class="tag">Wazuh / Sysmon</li></ul>
+          <div class="btn-row"><a class="btn" href="/homelab/">See the lab</a></div>
         </article>
+
         <article class="card">
-          <h2>Local NAS Backups &amp; Camera Installation</h2>
-          <div class="meta">Small-business hardware and support</div>
-          <p>Set up NAS storage for manual file backups from two office computers and installed a separate DVR-based camera system.</p>
-          <div class="tags"><span class="tag">NAS</span><span class="tag">Ethernet</span><span class="tag">DVR cameras</span></div>
-          <div class="btn-row"><a class="btn" href="/camera-nas/">Read the NAS and camera case study</a></div>
+          <h2>NAS Backups &amp; Camera Installation</h2>
+          <p class="meta">IT Administrator &middot; Ehlert Welding Co., Inc.</p>
+          <p>Set up a NAS for file backups from two office computers, tested restores, and installed a four-camera DVR system.</p>
+          <ul class="tags"><li class="tag">NAS</li><li class="tag">Backups</li><li class="tag">DVR cameras</li></ul>
+          <div class="btn-row"><a class="btn" href="/camera-nas/">Read more</a></div>
         </article>
       </div>
     </div>
   </main>
 
-  <footer class="site-footer">© 2026 Layne Fester</footer>
+  <footer class="site-footer">
+    <div class="container">
+      <span>&copy; 2026 Layne Fester</span>
+      <nav aria-label="Elsewhere">
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#100;&#102;&#101;&#115;&#116;&#101;&#114;&#64;&#117;&#119;&#109;&#46;&#101;&#100;&#117;">Email</a>
+        <a href="https://www.linkedin.com/in/layne-fester/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/rak-dev0" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
